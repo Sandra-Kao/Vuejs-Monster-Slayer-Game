@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 body {
@@ -65,12 +65,17 @@ button {
   border: 1px solid #88005b;
   background-color: #88005b;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 0.5rem;
   border-radius: 12px;
-  margin: 1rem;
-  width: 12rem;
+  margin: 1rem 0.5rem;
+  width: 9rem;
+  height: 6rem;
   cursor: pointer;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+button p {
+  font-size: 0.5rem;
+  color: lightblue;
 }
 
 button:focus {
@@ -90,6 +95,10 @@ button:disabled {
   box-shadow: none;
   color: #3f3f3f;
   cursor: not-allowed;
+}
+
+button:disabled p {
+  color: blue;
 }
 
 #log ul {
