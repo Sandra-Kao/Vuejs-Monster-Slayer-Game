@@ -13,51 +13,64 @@
 
 <body>
     <header>
-        <h1>Monster Slayer</h1>
+      <h1>Monster Slayer</h1>
     </header>
     <div id="game">
-        <section id="monster" class="container">
-            <h2>Monster Health</h2>
-            <div class="healthbar">
-                <div class="healthbar__value" :style="monsterHealthyStyle">{{monsterHealthy +'%'}}</div>
-            </div>
-        </section>
-        <section id="player" class="container">
-            <h2>Your Health</h2>
-            <div class="healthbar">
-                <div class="healthbar__value" :style="playerHealthyStyle">{{playerHealthy +'%'}}</div>
-            </div>
-        </section>
-        <section class="container" v-if="isGameOver">
-            <h2>Game Over</h2>
-            <h3 v-if="isDraw">This is a draw game.</h3>
-            <h2 v-else-if="isPlayerWin">You are a Monster Slayer!!</h2>
-            <h3 v-else>You lost this game!!</h3>
-            <button @click="restart">RESTART</button>
-        </section>
-        <section id="controls" v-else>
-            <button @click="attackMonster">ATTACK</button>
-            <button @click="specialAttackMonster" :disabled="countRound % 3 === 0">SPECIAL ATTACK</button>
-            <button @click="healPlayer">HEAL</button>
-            <button @click="surrender">SURRENDER</button>
-        </section>
-        <section id="log" class="container">
-            <h2>Battle Log</h2>
-            <ul>
-                <li v-for="log in battleLogs" :key="">
-                    <span :class="{'log--monster' : log.attactBy === 'Monster',
-                        'log--player' : log.attactBy === 'You'}">
-            {{log.attactBy }}
-          </span>
-                    <span> - {{log.attactAction}} - </span>
-                    <span :class="{'log--damage' : log.attactAction === 'attack',
-                        'log--heal' : log.attactAction === 'heal'}">
-            {{log.value}}
-        </span>
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="monsterHealthyStyle">{{monsterHealthy +'%'}}</div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="playerHealthyStyle">{{playerHealthy +'%'}}</div>
+        </div>
+      </section>
+      <section class="container" v-if="isGameOver">
+        <h2 v-if="!isPlayerWin">Game Over</h2>
+        <h3 v-if="isDraw">This is a draw game.</h3>
+        <h2 v-else-if="isPlayerWin">You are a Monster Slayer!!</h2>
+        <h3 v-else>You lost this game!!</h3>
+        <button @click="restart">RESTART</button>
+      </section>
+      <section id="controls" v-else>
+        <button @click="attackMonster">
+          ATTACK
+          <p>Attack for 5 ~ 10 /move</p>
+        </button>
+        <button @click="specialAttackMonster" :disabled="countRound % 3 === 0">
+          SPECIAL ATTACK
+          <p>Attack for 5 ~ 30 /move</p>
+        </button>
+        <button @click="healPlayer">
+          HEAL
+          <p>Heal for 10 ~ 20 /move</p>
+        </button>
+        <button @click="surrender">
+          SURRENDER
+          <p>A gentleman would rather die than have himself humiliated.</p>
+        </button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <p>You'll be attacked by 10 ~ 20 /move</p>
+        <ul>
+          <li v-for="log in battleLogs" :key="">
+            <span :class="{'log--monster' : log.attactBy === 'Monster',
+                            'log--player' : log.attactBy === 'You'}">
+              {{log.attactBy }}
+            </span>
+            <span> - {{log.attactAction}} - </span>
+            <span :class="{'log--damage' : log.attactAction === 'attack',
+                            'log--heal' : log.attactAction === 'heal'}">
+              {{log.value}}
+            </span>
 
-                </li>
-            </ul>
-        </section>
+          </li>
+        </ul>
+      </section>
     </div>
 </body>
 
